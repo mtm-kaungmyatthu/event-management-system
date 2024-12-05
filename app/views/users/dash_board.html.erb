@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Dashboard</h1>
+</div>
+
+<!-- Cards for Statistics -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-header">Total Events</div>
+      <div class="card-body">
+        <h5 class="card-title"><%= Event.count %></h5>
+        <p class="card-text">Manage all your events here.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header">Upcoming Events</div>
+      <div class="card-body">
+        <h5 class="card-title"><%= Event.where('date >= ?', Date.today).count %></h5>
+        <p class="card-text">Stay updated with upcoming events.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-warning mb-3">
+      <div class="card-header">Users</div>
+      <div class="card-body">
+        <h5 class="card-title"><%= User.count %></h5>
+        <p class="card-text">Manage users of the system.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h1>Upcoming Events</h1>
+  <%= link_to 'Create Event', new_event_path, class: 'btn btn-primary mb-3' %>
+  <div class="list-group">
+    <% @events.each do |event| %>
+      <div class="list-group-item">
+        <h5><%= link_to event.name, event_path(event) %></h5>
+        <p><%= event.location %> - <%= event.date.strftime('%B %d, %Y %H:%M') %></p>
+        <p><%= event.description.truncate(100) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

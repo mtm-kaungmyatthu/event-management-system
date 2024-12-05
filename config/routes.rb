@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :events
+  resources :users do
+    member do
+      get :dash_board
+    end
+  end
+  resources :events do
+    collection do
+      get :registered_events
+    end
+    member do
+      post :register
+    end
+  end
   root to: "events#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -17,7 +29,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post "login", to: "auth#login"
-      resources :events, only: [ :create ]
+      resources :events, only: [ :index, :create ] do
+        member do
+          post :register
+        end
+      end
     end
   end
 end

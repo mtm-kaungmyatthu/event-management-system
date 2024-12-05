@@ -39,10 +39,26 @@ class EventsController < ApplicationController
     end
   end
 
+  def register
+    event = Event.find(params[:id])
+
+    registration = event.registrations.build(user: current_user)
+
+    if registration.save!
+      redirect_to event, notice: "Event was successfully created."
+    else
+      redirect_to @event, notice: "Event not was successfully created."
+    end
+  end
+
   def destroy
     set_event
     @event.destroy
     redirect_to events_path, notice: "Event was successfully deleted."
+  end
+
+  def registered_events
+    @events = current_user.registered_events
   end
 
   private

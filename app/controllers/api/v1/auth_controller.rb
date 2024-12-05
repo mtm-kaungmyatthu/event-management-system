@@ -1,6 +1,4 @@
 class Api::V1::AuthController < ApplicationController
-  before_action :authorize_request
-
   # POST /api/v1/login
   def login
     @user = User.find_by(email: params[:email])
