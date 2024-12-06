@@ -35,12 +35,11 @@
 
 <div class="container mt-5">
   <h1>Upcoming Events</h1>
-  <%= link_to 'Create Event', new_event_path, class: 'btn btn-primary mb-3' %>
   <div class="list-group">
     <% @events.each do |event| %>
       <div class="list-group-item">
         <h5><%= link_to event.name, event_path(event) %></h5>
-        <p><%= event.location %> - <%= event.date.strftime('%B %d, %Y %H:%M') %></p>
+        <p><%= event.location %> - <%= event.date.strftime('%B %d, %Y') %> <%= event.time.strftime('%H:%m') %></p>
         <p><%= event.description.truncate(100) %></p>
       </div>
     <% end %>

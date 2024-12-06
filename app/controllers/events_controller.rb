@@ -1,9 +1,11 @@
 # app/controllers/events_controller.rb
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   # before_action :set_event, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @events = Event.all
+    authorize Event
+    @events = Event.page(params[:page]).per(10)
   end
 
   # GET /events/new

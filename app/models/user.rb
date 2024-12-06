@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :events
   has_many :registrations
   has_many :registered_events, through: :registrations, source: :event
+  enum :role, { member: 1, admin: 2 }
 end

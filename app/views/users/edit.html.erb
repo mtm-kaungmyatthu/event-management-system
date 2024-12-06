@@ -1,0 +1,40 @@
+<%# app/views/users/edit.html.erb %>
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header text-center bg-warning text-white">
+      <h2>Edit User</h2>
+    </div>
+
+    <div class="card-body">
+      <%= form_with(model: @user, local: true, class: 'needs-validation', novalidate: true) do |f| %>
+
+        <div class="mb-3">
+          <%= f.label :name, "Name", class: 'form-label fw-bold' %>
+          <%= f.text_field :name, class: 'form-control', placeholder: "Enter user name", required: true %>
+          <div class="invalid-feedback">Please provide a valid name.</div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :email, "Email", class: 'form-label fw-bold' %>
+          <%= f.email_field :email, class: 'form-control', placeholder: "Enter email address", required: true %>
+          <div class="invalid-feedback">Please provide a valid email address.</div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :role, "Role", class: 'form-label fw-bold' %>
+          <%= f.select :role, ['admin', 'member'], { selected: @user.role }, class: 'form-select' %>
+          <div class="invalid-feedback">Please select a valid role.</div>
+        </div>
+
+        <div class="d-grid">
+          <%= f.submit "Update User", class: 'btn btn-success btn-lg' %>
+        </div>
+
+      <% end %>
+    </div>
+
+    <div class="card-footer text-center">
+      <%= link_to 'Back to User', user_path(@user), class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

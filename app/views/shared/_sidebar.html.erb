@@ -1,0 +1,30 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="<%= dash_board_user_path(current_user) %>">
+          <i class="bi bi-house-door"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= events_path %>">
+          <i class="bi bi-calendar-event"></i>
+          My Events
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= users_path %>">
+          <i class="bi bi-people"></i>
+          Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= registered_events_events_path %>">
+          <i class="bi bi-graph-up"></i>
+          Registered Events
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,20 @@
+<%# app/views/users/show.html.erb %>
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header text-center bg-primary text-white">
+      <h2>User Detail</h2>
+    </div>
+
+    <div class="card-body">
+      <p><strong>Name:</strong> <%= @user.name %></p>
+      <p><strong>Email:</strong> <%= @user.email %></p>
+      <p><strong>Role:</strong> <%= @user.role.capitalize %></p>
+      <p><strong>Created At:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
+      <p><strong>Last Updated:</strong> <%= @user.updated_at.strftime("%B %d, %Y") %></p>
+    </div>
+    <div class="card-footer text-center">
+      <%= link_to 'Edit User', edit_user_path(@user), class: 'btn btn-warning' %>
+      <%= link_to 'Back to Users List', users_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

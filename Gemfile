@@ -64,3 +64,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "pundit", "~> 2.4"
+gem "faker", "~> 3.4"
+gem "kaminari", "~> 1.2"
