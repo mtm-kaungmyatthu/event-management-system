@@ -1,11 +1,10 @@
 # app/controllers/events_controller.rb
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_event, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_event, except: [ :index, :new, :registered_events ]
 
   def index
-    authorize Event
-    @events = Event.page(params[:page]).per(10)
+    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list
   end
 
   # GET /events/new
@@ -15,7 +14,7 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params.merge(user_id: current_user.id))
+    @event = current_user.events.new(event_params)
     if @event.save
       redirect_to @event, notice: "Event was successfully created."
     else
@@ -23,17 +22,8 @@ class EventsController < ApplicationController
     end
   end
 
-  def show
-    @event = Event.find(params[:id]) # Find the event by ID and display it
-  end
-
-  def edit
-    @event = Event.find(params[:id]) # Find the event by ID and display it
-  end
-
   # PATCH/PUT /events/:id
   def update
-    set_event
     if @event.update(event_params.merge(user_id: current_user.id))
       redirect_to @event, notice: "Event was successfully updated."
     else
@@ -42,19 +32,16 @@ class EventsController < ApplicationController
   end
 
   def register
-    event = Event.find(params[:id])
-
-    registration = event.registrations.build(user: current_user)
+    registration = @event.registrations.build(user: current_user)
 
     if registration.save!
-      redirect_to event, notice: "Event was successfully created."
+      redirect_to registered_events_events_path, notice: "Event was successfully created."
     else
       redirect_to @event, notice: "Event not was successfully created."
     end
   end
 
   def destroy
-    set_event
     @event.destroy
     redirect_to events_path, notice: "Event was successfully deleted."
   end
