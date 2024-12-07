@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  root to: "users#dash_board"
   devise_for :users
   resources :users do
+    collection do
+      post :create_new_user
+    end
     member do
       get :dash_board
     end
@@ -13,7 +17,6 @@ Rails.application.routes.draw do
       post :register
     end
   end
-  root to: "events#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

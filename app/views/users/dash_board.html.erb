@@ -34,7 +34,10 @@
 </div>
 
 <div class="container mt-5">
-  <h1>Upcoming Events</h1>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-center">All Event List</h1>
+    <%= link_to 'Create New Event', new_event_path, class: 'btn btn-success btn-sm' %>
+  </div>
   <div class="list-group">
     <% @events.each do |event| %>
       <div class="list-group-item">

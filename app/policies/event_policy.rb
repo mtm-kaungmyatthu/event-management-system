@@ -2,11 +2,15 @@ class EventPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
 
     def list
-      unless user.admin?
-        event.all
+      if user.admin?
+        Event.all
       else
         user.events
-      end.page(page).per(10)
+      end
+    end
+
+    def owner_list
+      user.events
     end
   end
 

@@ -7,7 +7,7 @@
           <h3>Create User</h3>
         </div>
         <div class="card-body">
-          <%= form_with(model: @user, local: true, url: users_path) do |f| %>
+          <%= form_with(model: @user, local: true, url: create_new_user_users_path) do |f| %>
             <div class="form-group mb-3">
               <%= f.label :name, class: 'form-label' %>
               <%= f.text_field :name, class: 'form-control', placeholder: 'Enter full name' %>

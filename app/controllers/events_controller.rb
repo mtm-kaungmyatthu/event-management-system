@@ -1,10 +1,10 @@
 # app/controllers/events_controller.rb
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, except: [ :index, :new, :registered_events ]
+  before_action :set_event, except: [ :index, :new, :create, :registered_events ]
 
   def index
-    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list
+    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list.page(params[:page]).per(10)
   end
 
   # GET /events/new

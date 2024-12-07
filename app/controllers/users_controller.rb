@@ -5,14 +5,14 @@ class UsersController < ApplicationController
   end
 
   def dash_board
-    @events = Event.all
+    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list.page(params[:page]).per(10)
   end
 
   def new
     @user = User.new
   end
 
-  def create
+  def create_new_user
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User created successfully."

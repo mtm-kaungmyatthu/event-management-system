@@ -68,3 +68,5 @@ end
 gem "pundit", "~> 2.4"
 gem "faker", "~> 3.4"
 gem "kaminari", "~> 1.2"
+gem "kaminari-bootstrap"
+gem "active_model_serializers", "~> 0.10.2"

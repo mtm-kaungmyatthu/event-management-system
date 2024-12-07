@@ -1,3 +1,9 @@
+<!-- Sidebar Toggle Button (Hamburger icon) -->
+<button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <i class="bi bi-house-door"></i><span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Sidebar Navigation (collapsed by default on small screens) -->
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
@@ -7,18 +13,20 @@
           Dashboard
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= events_path %>">
-          <i class="bi bi-calendar-event"></i>
-          My Events
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= users_path %>">
-          <i class="bi bi-people"></i>
-          Users
-        </a>
-      </li>
+      <% if current_user.admin? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= events_path %>">
+            <i class="bi bi-calendar-event"></i>
+            My Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= users_path %>">
+            <i class="bi bi-people"></i>
+            Users
+          </a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link" href="<%= registered_events_events_path %>">
           <i class="bi bi-graph-up"></i>
