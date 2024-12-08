@@ -8,26 +8,29 @@
     <table class="table table-striped table-hover">
       <thead class="table-dark">
         <tr>
-          <th>#</th>
-          <th>Event ID</th>
+          <th>No</th>
           <th>Event Name</th>
           <th>Date</th>
           <th>Location</th>
-          <th>Actions</th>
+          <th>Stauts</th>
         </tr>
       </thead>
       <tbody>
         <% @events.each_with_index do |event, index| %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= event.id %></td>
-            <td><%= event.name %></td>
+            <td><%= link_to event.name, event_path(event), class: 'text-decoration-none' %></td>
             <td><%= event.date %></td>
             <td><%= event.location %></td>
             <td>
-              <%= link_to 'View', event_path(event), class: 'btn btn-sm btn-primary' %>
-              <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning' %>
-              <%= link_to 'Delete', event_path(event), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+              <!-- Switch for Active/Non-Active -->
+              <%= form_with url: toggle_active_event_path(event), method: :patch, local: true do %>
+                <div class="form-check form-switch">
+                  <%= check_box_tag :status, true, event.status,
+                      class: "form-check-input",
+                      onchange: "this.form.submit()" %>
+                </div>
+              <% end %>
             </td>
           </tr>
         <% end %>

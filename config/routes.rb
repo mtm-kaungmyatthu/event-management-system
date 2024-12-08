@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     member do
       get :dash_board
+      patch :toggle_active
     end
   end
   resources :events do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     end
     member do
       post :register
+      patch :toggle_active
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Event Management System" %></title>
+    <link rel="icon" href="/binary-lab.png" type="image/png">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
@@ -16,6 +17,7 @@
   </head>
 
   <body>
+    <%= render 'shared/flash' %>
     <% if user_signed_in? %>
       <%= render 'shared/navbar' %>
     <% end %>

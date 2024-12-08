@@ -35,9 +35,9 @@ class EventsController < ApplicationController
     registration = @event.registrations.build(user: current_user)
 
     if registration.save!
-      redirect_to registered_events_events_path, notice: "Event was successfully created."
+      redirect_to registered_events_events_path, notice: "Event was successfully registered."
     else
-      redirect_to @event, notice: "Event not was successfully created."
+      redirect_to @event, notice: "Event not was successfully registered."
     end
   end
 
@@ -48,6 +48,12 @@ class EventsController < ApplicationController
 
   def registered_events
     @events = current_user.registered_events
+  end
+
+  def toggle_active
+    @event.update(status: params[:status].present?)
+    # Redirect back to the events page with a success message
+    redirect_to events_path, notice: "Event status updated successfully."
   end
 
   private

@@ -9,12 +9,13 @@
       <p><strong>Name:</strong> <%= @user.name %></p>
       <p><strong>Email:</strong> <%= @user.email %></p>
       <p><strong>Role:</strong> <%= @user.role.capitalize %></p>
+      <p><strong>Status:</strong> <%= @user.status? ? "Active" : "Inactive" %></p>
       <p><strong>Created At:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
       <p><strong>Last Updated:</strong> <%= @user.updated_at.strftime("%B %d, %Y") %></p>
     </div>
     <div class="card-footer text-center">
       <%= link_to 'Edit User', edit_user_path(@user), class: 'btn btn-warning' %>
-      <%= link_to 'Back to Users List', users_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Delete Event', @user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true }, class: 'btn btn-danger' %>
     </div>
   </div>
 </div>

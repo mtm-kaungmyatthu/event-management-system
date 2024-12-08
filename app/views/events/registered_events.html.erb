@@ -5,26 +5,26 @@
     <table class="table table-striped table-hover">
       <thead class="table-dark">
         <tr>
-          <th>#</th>
+          <th>No</th>
           <th>Event Name</th>
           <th>Date</th>
+          <th>Time</th>
           <th>Location</th>
-          <th>Location</th>
-          <th>Actions</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <% @events.each_with_index do |event, index| %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= event.id %></td>
-            <td><%= event.name %></td>
+            <td><%= link_to event.name, event_path(event), class: 'text-decoration-none' %></td>
             <td><%= event.date %></td>
+            <td><%= event.time.strftime('%H:%M') %></td>
             <td><%= event.location %></td>
             <td>
-              <%= link_to 'View', event_path(event), class: 'btn btn-sm btn-primary' %>
-              <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning' %>
-              <%= link_to 'Delete', event_path(event), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+              <span class="badge <%= event.status? ? 'bg-success' : 'bg-danger' %>">
+                <%= event.status? ? 'Active' : 'Inactive' %>
+              </span>
             </td>
           </tr>
         <% end %>

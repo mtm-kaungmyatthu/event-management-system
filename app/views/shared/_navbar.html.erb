@@ -1,14 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+    <img src="/binary-lab.png" alt="Logo" alt="Logo" style="height: 30px; width: auto; margin-right: 8px;">
     <a class="navbar-brand" href="<%= dash_board_user_path(current_user) %>">Event Management</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="<%= dash_board_user_path(current_user) %>">Dashboard</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="<%= user_path(current_user) %>">Profile</a>
         </li>
