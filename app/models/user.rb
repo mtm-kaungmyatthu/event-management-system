@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :registrations
   has_many :registered_events, through: :registrations, source: :event
   enum :role, { member: 1, admin: 2 }
+
+  validates :name, :email, presence: true
+  validates :password, presence: true, unless: :persisted?
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  INDEX_LIMIT = 10
 end

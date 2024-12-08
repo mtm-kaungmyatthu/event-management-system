@@ -2,7 +2,7 @@ class Api::V1::EventsController < ApplicationController
   before_action :authorize_request
 
   def index
-    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list
+    @events = EventPolicy::Scope.new(current_user, Event).list
     render json: @events, each_serializer: EventSerializer, status: :ok
   end
 

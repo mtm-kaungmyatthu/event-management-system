@@ -14,7 +14,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_152536) do
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.date "date", default: "2024-12-08", null: false
+    t.date "date", null: false
     t.time "time", null: false
     t.string "location"
     t.boolean "status", default: true, null: false

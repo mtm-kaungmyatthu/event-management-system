@@ -2,9 +2,10 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, except: [ :index, :new, :create, :registered_events ]
+  before_action :authorize!, except: [:index, :registered_events]
 
   def index
-    @events = EventPolicy::Scope.new(current_user, Event, params[:page]).list.page(params[:page]).per(10)
+    @events = EventPolicy::Scope.new(current_user, Event).list.page(params[:page]).per(Event::INDEX_LIMIT)
   end
 
   # GET /events/new
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/:id
   def update
-    if @event.update(event_params.merge(user_id: current_user.id))
+    if @event.update(event_params)
       redirect_to @event, notice: "Event was successfully updated."
     else
       render :edit, status: :unprocessable_entity # Render edit page again with errors
@@ -64,6 +65,11 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :description, :date, :time, :location)
+      params.require(:event).permit(:name, :description, :date, :time, :location, :status)
+    end
+
+    def authorize!
+      arg = @event.present? ? @event : Event
+      authorize arg
     end
 end

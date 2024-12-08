@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :user, :record, :page
+  attr_reader :user, :event
 
-  def initialize(user, record, page)
+  def initialize(user, event)
     @user = user
-    @record = record
-    @page = page
+    @event = event
   end
 
   def index?
@@ -38,10 +37,9 @@ class ApplicationPolicy
   end
 
   class Scope
-    def initialize(user, scope, page)
+    def initialize(user, event)
       @user = user
-      @scope = scope
-      @page = page
+      @event = event
     end
 
     def resolve
@@ -50,6 +48,6 @@ class ApplicationPolicy
 
     private
 
-    attr_reader :user, :scope, :page
+    attr_reader :user, :event
   end
 end

@@ -17,7 +17,7 @@ puts "Cleared existing users and events"
 # Seed Users
 5.times do |n|
   User.create!(
-    email: "user#{n}@test.com",
+    email: "user#{n+1}@test.com",
     password: "password1",
     name: Faker::Name.name,
     role: "admin"

@@ -6,16 +6,68 @@
     </div>
 
     <div class="card-body">
-      <p><strong>Name:</strong> <%= @user.name %></p>
-      <p><strong>Email:</strong> <%= @user.email %></p>
-      <p><strong>Role:</strong> <%= @user.role.capitalize %></p>
-      <p><strong>Status:</strong> <%= @user.status? ? "Active" : "Inactive" %></p>
-      <p><strong>Created At:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
-      <p><strong>Last Updated:</strong> <%= @user.updated_at.strftime("%B %d, %Y") %></p>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Name:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted"><%= @user.name %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Email:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted"><%= @user.email %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Role:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted"><%= @user.role.capitalize %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Status:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted">
+            <span class="badge <%= @user.status? ? 'bg-success' : 'bg-danger' %>">
+              <%= @user.status? ? "Active" : "Inactive" %>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Created At:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted"><%= @user.created_at.strftime("%B %d, %Y") %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <p><strong>Last Updated:</strong></p>
+        </div>
+        <div class="col-md-8">
+          <p class="text-muted"><%= @user.updated_at.strftime("%B %d, %Y") %></p>
+        </div>
+      </div>
     </div>
+
     <div class="card-footer text-center">
       <%= link_to 'Edit User', edit_user_path(@user), class: 'btn btn-warning' %>
-      <%= link_to 'Delete Event', @user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true }, class: 'btn btn-danger' %>
+      <%= link_to 'Delete Event', @user, data: { turbo_method: :delete, turbo_confirm: "Are you sure want to delete?", turbo: true }, class: 'btn btn-danger' %>
     </div>
   </div>
 </div>

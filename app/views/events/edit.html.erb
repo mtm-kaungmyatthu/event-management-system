@@ -1,12 +1,11 @@
 <div class="container mt-5">
   <div class="card shadow-lg">
-    <div class="card-header text-center bg-warning text-white">
-      <h2>Edit Event</h2>
-    </div>
+    <%= form_with(model: @event, local: true, class: 'needs-validation', novalidate: true) do |f| %>
+      <div class="card-header text-center bg-warning text-white">
+        <h2>Edit Event</h2>
+      </div>
 
-    <div class="card-body">
-      <%= form_with(model: @event, local: true, class: 'needs-validation', novalidate: true) do |f| %>
-
+      <div class="card-body">
         <div class="mb-3">
           <%= f.label :name, "Event Name", class: 'form-label fw-bold' %>
           <%= f.text_field :name, class: 'form-control', placeholder: "Enter event name", required: true %>
@@ -33,24 +32,21 @@
 
         <div class="mb-3">
           <%= f.label :status, "Status", class: 'form-label fw-bold' %>
-          <%= f.text_field :status, class: 'form-control', placeholder: "Enter event location", required: true %>
-          <div class="invalid-feedback">Please provide a valid location.</div>
+          <div class="form-check form-switch">
+            <%= f.check_box :status, class: 'form-check-input', checked: @event.status? %>
+          </div>
         </div>
 
         <div class="mb-3">
           <%= f.label :description, "Description", class: 'form-label fw-bold' %>
           <%= f.text_area :description, class: 'form-control', rows: 4, placeholder: "Enter event description" %>
         </div>
+      </div>
 
-        <div class="d-grid">
-          <%= f.submit "Update Event", class: 'btn btn-success btn-lg' %>
-        </div>
-
-      <% end %>
-    </div>
-
-    <div class="card-footer text-center">
-      <%= link_to 'Back to Events', events_path, class: 'btn btn-secondary' %>
-    </div>
+      <div class="card-footer text-center">
+        <%= f.submit "Update Event", class: 'btn btn-success' %>
+        <%= link_to 'Back to Events', events_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
   </div>
 </div>

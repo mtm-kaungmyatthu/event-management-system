@@ -24,8 +24,10 @@
         <div class="col-md-6">
           <h5 class="fw-bold">Status</h5>
           <p class="text-muted">
-            <i class="bi <%= @event.status? ? 'bi-emoji-smile text-success' : 'bi-emoji-frown text-danger' %>"></i>
-            <%= @event.status? ? 'Active' : 'Inactive' %>
+            <i class="bi <%= @event.status? ? 'bi-emoji-smile' : 'bi-emoji-frown' %>"></i>
+            <span class="badge <%= @event.status? ? 'bg-success' : 'bg-danger' %>">
+              <%= @event.status? ? "Active" : "Inactive" %>
+            </span>
           </p>
         </div>
       </div>
@@ -37,10 +39,9 @@
     </div>
 
     <div class="card-footer text-center">
-      <%= link_to 'Register Event', register_event_path(@event), data: { turbo_method: :post, turbo_confirm: "Are you sure?", turbo: true }, class: 'btn btn-info' %>
+      <%= link_to 'Register Event', register_event_path(@event), data: { turbo_method: :post, turbo_confirm: "Are you sure want to register?", turbo: true }, class: 'btn btn-info' %>
       <%= link_to 'Edit Event', edit_event_path(@event), class: 'btn btn-warning' %>
-      <!-- Delete Button -->
-      <%= link_to 'Delete Event', @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true }, class: 'btn btn-danger' %>
+      <%= link_to 'Delete Event', @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure want to delete?", turbo: true }, class: 'btn btn-danger' %>
     </div>
   </div>
 </div>

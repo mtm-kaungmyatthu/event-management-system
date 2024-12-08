@@ -3,8 +3,8 @@ class CreateEvents < ActiveRecord::Migration[8.0]
     create_table :events do |t|
       t.string :name,     null: false
       t.text :description
-      t.date :date,       null: false, default: Date.today
-      t.time :time,       null: false, default: Date.today
+      t.date :date,       null: false
+      t.time :time,       null: false
       t.string :location
       t.boolean :status,  null: false, default: true
       t.references :user, null: false, foreign_key: true
