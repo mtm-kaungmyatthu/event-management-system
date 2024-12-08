@@ -1,24 +1,65 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Event Management System
+This is a simple Event Management System built using Ruby on Rails. The application allows users to create and manage events with features such as role management and event validation.
 
-Things you may want to cover:
+## Features
+Create Event: Add new events with name, time, date, location, and description.
 
-* Ruby version
+Role Management: Assign roles like Admin or Member to users.
 
-* System dependencies
+Status Management: Activate or deactivate events.
 
-* Configuration
+Form Validations: Ensure data integrity with client-side and server-side validations.
 
-* Database creation
+## Setup Instructions
 
-* Database initialization
+Prerequisites
 
-* How to run the test suite
+Ensure you have the following installed:
 
-* Services (job queues, cache servers, search engines, etc.)
+* Ruby (3.3.6)
 
-* Deployment instructions
+* Rails (8.0.0)
 
-* ...
+* Sqlite3
+
+* Bundler
+
+## Installation
+
+Unzip the repository:
+cd event_management_system
+
+Install dependencies:
+
+```
+bundle install
+```
+
+Set up the database:
+```
+rails db:create
+rails db:migrate
+rails db:seed
+```
+Start the Rails server:
+```
+rails server
+```
+Open the application in your browser:
+```
+http://localhost:3000
+```
+
+## Runing local
+Enter the email and password
+```
+Email: user1@test.com
+Password: password1
+```
+## Disclaimer
+The "Remember Me" and "Forgot Your Password" features are not working yet.
+The "About" and "Contant" and "Follow Us social medias" from footer section are not also available yet.
+
+
